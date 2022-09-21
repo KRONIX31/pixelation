@@ -1,0 +1,259 @@
+@font-face {
+	font-family: 'fps'; 
+	src: url(fonts/minecraft_title_cyrillic.ttf); 
+}
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow: overlay;
+    font-family: 'fps';
+}
+body::-webkit-scrollbar {
+    width: 10px;
+}
+body::-webkit-scrollbar-track {
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 166, 0,0.6);
+}
+main{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.navigation{
+    position: relative;
+    display: flex;
+    row-gap: 33px;
+    padding: 20px;
+    width: 100%;
+    background-color: rgb(50, 44, 50);
+    z-index: 10;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.row_nav{
+    display: flex;
+}
+.monitoring_fps_wrapper{
+    display: flex;
+    background-color: rgb(50, 44, 50);
+    justify-content: left;
+}
+.monitoring_fps{
+    font-size: 16px;
+    font-weight: 800;
+    padding: 4px 20px 0 20px;
+    background-color: rgb(255, 255, 255);
+}
+.fps_wrap{
+    flex: 0;
+    display: flex;
+    font-size: 27px;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    align-items: center;
+    column-gap: 19px;
+}
+.button_start_stop, .fps_wrap{
+    font-family: 'fps';
+    letter-spacing: 2px;
+}
+.fps_wrap > div{
+    position: relative;
+}
+.button_start_stop_wrapper{
+    display: flex;
+}
+.button_start_stop{
+    cursor: pointer;
+    width: 85px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: rgb(24, 157, 24);
+}
+
+.start_stop_off{
+    background-color: rgb(148, 6, 6);
+}
+
+.input{
+    width: 120px;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    font-weight: 700;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    outline: none;
+    position: relative;
+    z-index: 2;
+    height: 50px;
+}
+.input:focus{
+    outline: 4px solid rgb(44, 26, 210);
+}
+.input_wrong, .input_wrong:focus{
+    outline: 4px solid rgb(255, 0, 21);
+}
+.input::placeholder{
+    display: inline;
+    font-size: 17px;
+    text-align: center;
+}
+
+.file{
+    display: none;
+}
+.file_wrapper{
+    align-items: center;
+    display: flex;
+    background: rgba(255, 166, 0, 0.6);
+    border-radius: 6px;
+}
+.input_file_button{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: relative;
+    max-width: 200px;
+    height: 40px;
+    padding: 1px 10px 1px 10px;
+}
+.input_file_icon_wrapper{
+    align-items: center;
+    display: flex;
+}
+.input_file_icon{
+    height: 60%;
+}
+.input_file_button_text{
+    display: flex;
+    align-items: center;
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.resizable_wrap{
+    display: flex;
+    column-gap: 70px;
+}
+.resizable_wrap span{
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+    text-align: right;
+    font-size: 13px;
+}
+
+.resize_1, .resize_2{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+}
+.resize_area, .resize_orig_x{
+    width: 60px;
+    font-size: 20px;
+}
+
+.resize_1 div{
+    position: relative;
+}
+.resize_1 div::before{
+    content: 'PX';
+    display: block;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 500;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -40px;
+}
+.first_row_nav{
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.second_row_nav{
+    gap: 20px;
+    justify-content: left;
+    padding-right: 40px;
+    min-height: 60px;
+}
+.second_row_nav > div, label, input{
+    cursor: pointer;
+}
+.second_row_nav > div{
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 166, 0,0.1);
+    border-radius: 9px;
+}
+.main_radio{
+    filter: brightness(70%);
+    color: rgba(255, 166, 0,1);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.64px;
+    user-select: none;
+    text-align: right;
+    position: relative;
+    padding: 0px 35px 0 15px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.radio_rainbow label:before, .radio_white label:before, .radio_standart label:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgb(250, 235, 215);
+}
+.checkbox_transparent label::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(250, 235, 215);
+}
+.second_row_nav > div:not(:last-child) > input{
+    display: none;
+}
+.range_polzyn{
+    padding-right: 15px;
+    flex: 0;
+}
+.range_polzyn_dis{
+    display: none !important;
+}
+.cursor_default{
+    cursor: default;
+    filter: brightness(150%);
+}
+.radio:hover, .checkbox_transparent:hover{
+    filter: brightness(120%);
+}
+.main_radio_input:checked + label:before{
+    background-color: rgba(41, 154, 0, 0.9);
+}
+.main_radio_input:checked + label{
+    filter: brightness(150%);
+}

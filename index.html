@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Canvas</title>
+    <script src="p5.min.js"> </script>
+</head>
+<body>
+    <div class="monitoring_fps_wrapper">
+        <div class="monitoring_fps">FPS: 0.0</div>
+    </div>
+    
+    <nav class="navigation">
+
+        <div class="row_nav first_row_nav">
+            <div class="fps_wrap">
+                <span>MAX FPS</span>
+                <div>
+                    <input class="fps input" type="number" min="1" max="20" value="1" placeholder="от 1 до 20">
+                </div>
+                <div class="button_start_stop_wrapper">
+                    <button class="button_start_stop start_stop_on" type="button">STOP</button>
+                </div>
+            </div>
+            <div class="file_wrapper">
+                <input class="file" type="file" accept=".png, .jpg, .jpeg" id="file">
+                <label for="file" class="input_file_button">
+                    <span class="input_file_icon_wrapper"><img class="input_file_icon" src="upload_file_2.svg" alt="файл"></span>
+                    <span class="input_file_button_text">Файл</span>
+                 </label>
+            </div>
+            <div class="resizable_wrap">
+                <div class="resize_1">
+                    <span>Изменить ширину исходного</br>файла (после изменения перезагрузить)</span>
+                    <div>
+                        <input class="resize_orig_x input" type="text" maxlength="3" min="1" value="64">
+                    </div>
+                </div>
+                <div class="resize_2">
+                    <span>Коэффициент размера</br>области показа</span>
+                    <input class="resize_area input" type="number" min="0" max="15" value="0.9" step="0.1" placeholder="от 0 до 10">
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row_nav second_row_nav">
+            <div class="radio radio_rainbow">
+                <input class="rainbow_input main_radio_input" type="radio" name="mode" id="1">
+                <label class="main_radio" for="1">Радужный</label>
+            </div>
+            <div class="radio radio_white">
+                <input class="white_input main_radio_input" type="radio" name="mode" id="2">
+                <label class="main_radio" for="2">Белый</label>
+            </div>
+            <div class="radio radio_standart">
+                <input class="standart_input main_radio_input" type="radio" name="mode" id="3" checked>
+                <label class="main_radio" for="3">Стандарт</label>
+            </div>
+
+            <div class="checkbox_transparent" for="4">
+                <input class="transparent_input main_radio_input" type="checkbox" id="4">
+                <label class="main_radio" for="4">Прозрачность</label>
+            </div> 
+            <div class="range_polzyn range_polzyn_dis">
+                <label class="main_radio cursor_default" for="5">Прозрачность пикселей <br>(яркость)</label>
+                <input class="polzyn_input main_radio_input" type="range" min="1" max="30" id="5" value="1.5">
+            </div> 
+        </div>
+        
+    </nav>
+    <main>
+        <div id="canvas"></div>
+    </main>
+</body>
+<script src="main.js"> </script>
+</html>
