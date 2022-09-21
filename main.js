@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 fps_input.oninput = function(){
     const fps_str = parseInt(fps_input.value, 10)
-    if(fps_str){
+    if(fps_str && !buttonStartStop.classList.contains('start_stop_off')){
         fps = parseInt(fps_input.value, 10)
         localStorage.fps = fps
     }
