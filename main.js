@@ -162,7 +162,13 @@ function draw(){
     background(0)
     //image(img, 0, 0, width, height)
 
-    white_input.checked ? density = `${randomize()}` : density = `${randomize_common()}`
+    /*if((white_input.checked) && (transparent_input.checked)){
+        density = `${randomize_common()}`
+        console.log('if')
+    } else{
+        density = `${randomize()}`
+        console.log('else')
+    }*/
 
     let w = width / img.width;
     let h = height / img.height; 
@@ -188,6 +194,7 @@ function draw(){
 
                 fill(`rgba(${Math.floor(random() * 256)}, ${Math.floor(random() * 256)}, 
                 ${Math.floor(random() * 256)}, ${brightn})`)
+                density = `${randomize('rainbow')}`
             } else{
                 transparent_input.style.pointerEvents = 'all'
                 transparent_input.parentElement.querySelector('label').style.pointerEvents = 'all'
@@ -196,16 +203,20 @@ function draw(){
                 if(white_input.checked){
                     if(transparent_input.checked){
                         fill(`rgba(255,255,255,${brightn})`)
+                        density = `${randomize_common()}`
                     } else{
                         fill(`rgba(255,255,255,1)`)
+                        density = `${randomize()}`
                     }
 
                 } else{
                     if(standart_input.checked){
                         if(transparent_input.checked){
                             fill(`rgba(${r},${g},${b},${brightn})`)
+                            density = `${randomize_common()}`
                         } else{
                             fill(r,g,b)
+                            density = `${randomize_common()}`
                         }
                     }
                 }
@@ -219,16 +230,26 @@ function draw(){
             text(density[charIndex], i * w + w * 0.5, j * h + h * 0.5)
         }
     }
-
+    console.log(density)
 }
 
-function randomize(){
-    let result = '___________________________________'
-    let symbolsLength = symbols.length;
-    for (let i = 0; i < symbolsLength; i++ ) {
-        result += symbols.charAt(Math.floor(Math.random() * symbolsLength)) 
-   }
-   return result + '                                    ';
+function randomize(what){
+    let result, symbolsLength
+    if(what == 'rainbow'){
+        result = '______'
+        symbolsLength = symbols.length;
+        for (let i = 0; i < symbolsLength; i++ ) {
+            result += symbols.charAt(Math.floor(Math.random() * symbolsLength)) 
+        }
+        return result + '                 ';
+    } else{
+        result = '____________________________'
+        symbolsLength = symbols.length;
+        for (let i = 0; i < symbolsLength; i++ ) {
+            result += symbols.charAt(Math.floor(Math.random() * symbolsLength)) 
+        }
+        return result + '                             ';
+    }
 }
 function randomize_common(){
     let result = ''
