@@ -52,10 +52,11 @@ if(localStorage.brightness){
 if(localStorage.fileType){
     file_type.options[localStorage.fileType * 1].selected = true
 }
+if(localStorage.fileName){
+    download_input.value = localStorage.fileName
+}
 document.addEventListener('DOMContentLoaded', ()=>{
-    const fileName = localStorage.fileName
     const mode = localStorage.mode
-    download_input.value = fileName
     if(mode){
         if(mode == 'rainbow'){
             rainbow_input.checked = true
