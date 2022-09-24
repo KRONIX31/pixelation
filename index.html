@@ -8,10 +8,24 @@
     <title>Canvas</title>
     <link type="image/png" sizes="32x32" rel="icon" href="favicon.png">
     <script src="p5.min.js"> </script>
+    <script src="https://unpkg.com/p5.createloop@0.2.12/dist/p5.createloop.js"></script>
 </head>
 <body>
     <div class="monitoring_fps_wrapper">
         <div class="monitoring_fps">FPS: 0.0</div>
+        <div class="download_name_wrapper">
+            <span class="download_text">Имя сохраняемого файла:</span>
+            <input type="text" value="text_img" class="download_name">
+            <select class="file_type">
+                <option>PNG</option>
+                <option>GIF</option>
+            </select>
+            <div class="files download_wrapper">
+                <label class="input_file_button">
+                    <span class="input_file_icon_wrapper"><img class="input_file_icon" src="arrow_download.svg" alt="загрузить"></span>
+                </label>
+            </div>
+        </div>
     </div>
     
     <nav class="navigation">
@@ -26,7 +40,7 @@
                     <button class="button_start_stop start_stop_on" type="button">STOP</button>
                 </div>
             </div>
-            <div class="file_wrapper">
+            <div class="files file_wrapper">
                 <input class="file" type="file" accept=".png, .jpg, .jpeg" id="file">
                 <label for="file" class="input_file_button">
                     <span class="input_file_icon_wrapper"><img class="input_file_icon" src="upload_file_2.svg" alt="файл"></span>
@@ -69,7 +83,10 @@
             <div class="range_polzyn range_polzyn_dis">
                 <label class="main_radio cursor_default" for="5">Прозрачность пикселей <br>(яркость)</label>
                 <input class="polzyn_input main_radio_input" type="range" min="1" max="30" id="5" value="1.5">
-            </div> 
+            </div>
+            <div class="secret_mode_wrapper">
+                <img class="secret_mode" src="skull.svg" alt="ZV">
+            </div>
         </div>
         
     </nav>

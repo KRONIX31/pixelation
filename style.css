@@ -44,16 +44,42 @@ main{
 .monitoring_fps_wrapper{
     display: flex;
     background-color: rgb(50, 44, 50);
-    justify-content: left;
+    justify-content: space-between;
 }
 .monitoring_fps{
     font-size: 16px;
     font-weight: 800;
-    padding: 4px 20px 0 20px;
+    padding: 10px 20px 0 20px;
     background-color: rgb(255, 255, 255);
+}
+.download_name_wrapper{
+    display: flex;
+    column-gap: 7px;
+    align-items: center;
+    padding: 7px 7px 0 0;
+}
+.download_text{
+    color: #fff;
+    font-size: 16px;
+    text-align: right;
+}
+.download_name{
+    padding: 0 6px;
+    font-size: 17px;
+    outline: none;
+    cursor: text;
+    border-radius: 4px;
+    height: 30px;
+    width: 120px;
+}
+.file_type{
+    outline: none;
+    font-weight: 600;
+    height: 25px;
 }
 .fps_wrap{
     flex: 0;
+    border-radius: 3px;
     display: flex;
     font-size: 27px;
     color: rgb(255, 255, 255);
@@ -112,7 +138,7 @@ main{
 .file{
     display: none;
 }
-.file_wrapper{
+.files{
     align-items: center;
     display: flex;
     background: rgba(255, 166, 0, 0.6);
@@ -144,7 +170,7 @@ main{
 
 .resizable_wrap{
     display: flex;
-    column-gap: 70px;
+    column-gap: 67px;
 }
 .resizable_wrap span{
     color: rgb(255, 255, 255);
@@ -161,7 +187,7 @@ main{
 }
 .resize_area, .resize_orig_x{
     width: 60px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .resize_1 div{
@@ -180,7 +206,7 @@ main{
 }
 .first_row_nav{
     align-items: center;
-    justify-content: space-between;
+    justify-content: left;
     gap: 20px;
 }
 .second_row_nav{
@@ -196,18 +222,18 @@ main{
     display: flex;
     align-items: center;
     background-color: rgba(255, 166, 0,0.1);
-    border-radius: 9px;
+    border-radius: 7px;
 }
 .main_radio{
     filter: brightness(70%);
     color: rgba(255, 166, 0,1);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.64px;
     user-select: none;
     text-align: right;
     position: relative;
-    padding: 0px 35px 0 15px;
+    padding: 0px 28px 0 11px;
     display: flex;
     width: 100%;
     height: 100%;
@@ -218,9 +244,9 @@ main{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 10px;
-    width: 15px;
-    height: 15px;
+    right: 8px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
     background-color: rgb(250, 235, 215);
 }
@@ -238,11 +264,32 @@ main{
     display: none;
 }
 .range_polzyn{
-    padding-right: 15px;
     flex: 0;
+    padding-right: 8px;
 }
 .range_polzyn_dis{
     display: none !important;
+}
+.polzyn_input{
+    display: block !important;
+}
+.secret_mode_wrapper{
+    height: 60px;
+    padding: 4px;
+    transition: 0.33s;
+    margin-left: auto;
+}
+.secret_mode_wrapper:hover{
+    filter: invert(30%) brightness(140%);
+}
+.secret_mode_wrapper_active{
+    filter: invert(100%);
+}
+.secret_mode_wrapper_active:hover{
+    filter: invert(100%) brightness(100%);
+}
+.secret_mode{
+    height: 100%;
 }
 .cursor_default{
     cursor: default;

@@ -1,5 +1,6 @@
 let density = 'ABCDEFGHIJKLMNOQRSZ0123456789                       '
 let symbols = 'ABCDEFGHIJKLMNOQRSZ0123456789'
+let symbolsCopy = symbols
 let img
 let orig_height, orig_width, aspectRatio
 let fps // определяется далее из localstorage
@@ -8,6 +9,9 @@ let widthX // определяется далее из localstorage
 let brightn_k // определяется далее из localstorage
 const fps_input = document.querySelector('.fps')
 const file_input = document.querySelector('.file')
+const download_wrapper = document.querySelector('.download_wrapper')
+const download_input = document.querySelector('.download_name')
+const file_type = document.querySelector('.file_type')
 const resizeOrigX_input = document.querySelector('.resize_orig_x')
 const resizeArea_input = document.querySelector('.resize_area')
 
@@ -18,6 +22,7 @@ const transparent_input = document.querySelector('.transparent_input')
 const brightn_input = document.querySelector('.polzyn_input')
 const monitoringFPS = document.querySelector('.monitoring_fps')
 const buttonStartStop = document.querySelector('.button_start_stop')
+const secretMode_wrapper = document.querySelector('.secret_mode_wrapper')
 
 
 if(localStorage.fps){
@@ -44,8 +49,13 @@ if(localStorage.brightness){
 } else{
     brightn_k = 1.5
 }
+if(localStorage.fileType){
+    file_type.options[localStorage.fileType * 1].selected = true
+}
 document.addEventListener('DOMContentLoaded', ()=>{
+    const fileName = localStorage.fileName
     const mode = localStorage.mode
+    download_input.value = fileName
     if(mode){
         if(mode == 'rainbow'){
             rainbow_input.checked = true
@@ -72,7 +82,6 @@ file_input.onchange = function(e){
     let urlOfImageFile = URL.createObjectURL(files)
     console.log(urlOfImageFile)
     img = loadImage(urlOfImageFile, (e) => {
-        console.log(e,e.width)
         orig_height = img.height
         orig_width = img.width
         image(img, 0, 0)
@@ -105,7 +114,6 @@ transparent_input.onchange = function(){
         brightn_input.parentElement.classList.add('range_polzyn_dis')
     }
 }
-
 rainbow_input.onchange = function(){
     localStorage.mode = 'rainbow'
 }
@@ -115,6 +123,15 @@ standart_input.onchange = function(){
 white_input.onchange = function(){
     localStorage.mode = 'white'
 }
+
+secretMode_wrapper.addEventListener('click', ()=>{
+    if(!secretMode_wrapper.classList.contains('secret_mode_wrapper_active')){
+        symbols = 'ZZZZZZ||VVVVVV'
+    } else{
+        symbols = symbolsCopy
+    }
+    secretMode_wrapper.classList.toggle('secret_mode_wrapper_active')
+})
 
 
 buttonStartStop.addEventListener('click', (e)=>{
@@ -131,13 +148,45 @@ buttonStartStop.addEventListener('click', (e)=>{
         frameRate(fps)
     }
 })
+download_wrapper.addEventListener('click', ()=>{
+    if(file_type.selectedIndex == 0){
+        saveCanvas(download_input.value, 'png')             //png
+    } else{        
+        let orig_fps = fps
+        fps = 15                                            //svg
+        let gif = createLoop({
+            framesPerSecond: 3,
+            duration: 2,
+            gif:{
+                download: true,
+                fileName: `${download_input.value}.gif`,
+                render: false
+            }
+        })
+
+        let funcInterval = setInterval(()=>{
+            if(gif.elapsedFramesTotal >= 6){
+                fps = orig_fps
+                clearInterval(funcInterval)
+            }
+        }, 200)
+    }
+})
+
+download_input.oninput = function(e){
+    localStorage.fileName = e.target.value
+}
+file_type.onchange = function(){
+    localStorage.fileType = file_type.selectedIndex
+}
+
 
 
 
 
 
 function preload(){
-    img = loadImage('Moiseev.png')
+    img = loadImage('russia.png')
 }
 
 function setup(){
@@ -161,14 +210,6 @@ function draw(){
     frameRate(fps)
     background(0)
     //image(img, 0, 0, width, height)
-
-    /*if((white_input.checked) && (transparent_input.checked)){
-        density = `${randomize_common()}`
-        console.log('if')
-    } else{
-        density = `${randomize()}`
-        console.log('else')
-    }*/
 
     let w = width / img.width;
     let h = height / img.height; 
@@ -230,18 +271,17 @@ function draw(){
             text(density[charIndex], i * w + w * 0.5, j * h + h * 0.5)
         }
     }
-    console.log(density)
 }
 
 function randomize(what){
     let result, symbolsLength
     if(what == 'rainbow'){
-        result = '______'
+        result = '________'
         symbolsLength = symbols.length;
         for (let i = 0; i < symbolsLength; i++ ) {
             result += symbols.charAt(Math.floor(Math.random() * symbolsLength)) 
         }
-        return result + '                 ';
+        return result + '                ';
     } else{
         result = '____________________________'
         symbolsLength = symbols.length;
