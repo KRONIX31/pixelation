@@ -153,7 +153,11 @@ download_wrapper.addEventListener('click', ()=>{
         saveCanvas(download_input.value, 'png')             //png
     } else{        
         let orig_fps = fps
-        fps = 15                                            //svg
+        if(fps == 0){
+            console.log('dviueuri')
+            frameRate(15)
+        }
+        fps = 15
         let gif = createLoop({
             framesPerSecond: 3,
             duration: 2,
